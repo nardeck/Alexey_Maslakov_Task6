@@ -126,33 +126,48 @@ public class Main {
             System.out.println(listUsers.getKey() + " - " + listUsers.getValue());
 
         System.out.println("____");
-        Set<Student> studentSet = new HashSet<>();
 
-        Student student1 = new Student("Svetlana_Ivanova");
-        Student student2 = new Student("Roman_Bondarenko");
-        Student student3 = new Student("Nikilay_Vorobey");
-        Student student4 = new Student("Vadim_Kisilev");
-        Student student5 = new Student("Kiril_Lebedev");
-        Student student6 = new Student("Ivan_Ivanov");
-        Student student7 = new Student("Anton_Golubev");
-        Student student8 = new Student("Nikolay_Vinokurov");
+        NameSurenameComparator sortByName = new NameSurenameComparator();
+        Set<Student> studentList = new TreeSet<>(sortByName);
 
-        studentSet.add(student1);
-        studentSet.add(student2);
-        studentSet.add(student3);
-        studentSet.add(student4);
-        studentSet.add(student5);
-        studentSet.add(student6);
-        studentSet.add(student7);
-        studentSet.add(student8);
+        studentList.add(new Student("Svetlana_Ivanova", 10, 19));
+        studentList.add(new Student("Roman_Bondarenko", 8, 23));
+        studentList.add(new Student("Nikilay_Vorobey", 5, 16));
+        studentList.add(new Student("Vadim_Kisilev", 8, 33));
+        studentList.add(new Student("Kiril_Lebedev", 9, 25));
+        studentList.add(new Student("Ivan_Ivanov", 7, 22));
+        studentList.add(new Student("Anton_Golubev", 8, 18));
+        studentList.add(new Student("Nikolay_Vinokurov", 3, 19));
+        studentList.add(new Student("Vasiliy_Poltoran", 9, 21));
 
-        for (Student s : studentSet)
+
+        for (Student s : studentList)
             System.out.println(s);
+        System.out.println("___");
+
+        List<Student> studentList2 = new ArrayList<>(studentList);
+
+        //отсортируем по полученныи оценкам
+        studentList2.sort(Student::compareTo);
+
+
+        for (Student s2 : studentList2) {
+            System.out.println(s2);
+        }
+        System.out.println("___");
+
+        // Отсортируем студентов по возрасту
+        AgeComparator sortByAge = new AgeComparator();
+
+        List<Student> studentList3 = new ArrayList<>(studentList2);
+        studentList3.sort(sortByAge);
+        for (Student s3 : studentList3) {
+            System.out.println(s3);
+        }
 
 
     }
 }
-
 
 
 
